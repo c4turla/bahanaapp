@@ -65,7 +65,7 @@
                         </dl>
                         <dl class="margin-sm-bottom">
                             <dt>Password</dt>
-                            <dd><?php echo $Password;?></dd>
+                            <dd>*****</dd>
                         </dl>
                     </div>
                     <div class="col-sm-4">

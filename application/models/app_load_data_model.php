@@ -2,68 +2,186 @@
 
 class app_load_data_model extends CI_Model {
 
-public function index_table_user(){
-	
-	
-			  
-			$tot_hal = $this->db->query("select * from user");
-			$hasil = '
-		<div class="page-content"> <!-- page content start -->
-
-		<div class="page-subheading page-subheading-md">
-			<ol class="breadcrumb">
-				<li><a href="javascript:;">Dashboard</a></li>
-				<li><a href="javascript:;">User</a></li>
-				<li class="active"><a href="javascript:;">Members</a></li>
-			</ol>
-		</div>
-		<div class="page-subheading page-subheading-md bg-white">
-			<div class="row">
-				<div class="col-sm-4 col-xs-5">
-					<a href="#" class="btn btn-round btn-primary" title="Members"><strong>'.$tot_hal->num_rows().' Members</a>
-				</div>
-				<div class="col-sm-7 col-sm-push-1 col-xs-6 col-xs-push-1">
-					<a href="'. base_url() . 'user/AddProfile" class="btn btn-success pull-right" title="Update"><i class="fa fa-lg fa-fw fa-plus"></i> Add Users</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="container-fluid-md">
-			<div class="row"> ';
-		
-		$get = $this->db->query("select * from user where 1=1 ");
-	
-		foreach($get->result() as $g)
-			{
-				$hasil.=' <div class="col-sm-6 col-md-4 col-lg-3">
-							<div class="panel panel-default panel-member">
-								<div class="panel-body">
-									<a href="'. base_url() . 'user/viewprofile/'.$g->id.'">
-										<div class="text-center">
-											<img src="'. base_url() . 'files/'.$g->FilesName.'"  width="150px" height="150px" class="img-circle" alt="image">
-
-											<h4 class="thin">
-												'.$g->NamaLengkap.'
-											</h4>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>';
-				    
-           
-			}
+		public function index_table_user(){
 			
-			 $hasil .= '</div>
+			
+					  
+					$tot_hal = $this->db->query("select * from user");
+					$hasil = '
+				<div class="page-content"> <!-- page content start -->
+
+				<div class="page-subheading page-subheading-md">
+					<ol class="breadcrumb">
+						<li><a href="javascript:;">Dashboard</a></li>
+						<li><a href="javascript:;">User</a></li>
+						<li class="active"><a href="javascript:;">Members</a></li>
+					</ol>
+				</div>
+				<div class="page-subheading page-subheading-md bg-white">
+					<div class="row">
+						<div class="col-sm-4 col-xs-5">
+							<a href="#" class="btn btn-round btn-primary" title="Members"><strong>'.$tot_hal->num_rows().' Members</a>
 						</div>
-						</div> <!-- page content end -->
-						';
-			
-			return $hasil;
-	
-	
-}
+						<div class="col-sm-7 col-sm-push-1 col-xs-6 col-xs-push-1">
+							<a href="'. base_url() . 'user/AddProfile" class="btn btn-success pull-right" title="Update"><i class="fa fa-lg fa-fw fa-plus"></i> Add Users</a>
+						</div>
+					</div>
+				</div>
 
+				<div class="container-fluid-md">
+					<div class="row"> ';
+				
+				$get = $this->db->query("select * from user where 1=1 ");
+			
+				foreach($get->result() as $g)
+					{
+						$hasil.=' <div class="col-sm-6 col-md-4 col-lg-3">
+									<div class="panel panel-default panel-member">
+										<div class="panel-body">
+											<a href="'. base_url() . 'user/viewprofile/'.$g->id.'">
+												<div class="text-center">
+													<img src="'. base_url() . 'files/'.$g->FilesName.'"  width="150px" height="150px" class="img-circle" alt="image">
+
+													<h4 class="thin">
+														'.$g->NamaLengkap.'
+													</h4>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>';
+						    
+		           
+					}
+					
+					 $hasil .= '</div>
+								</div>
+								</div> <!-- page content end -->
+								';
+					
+					return $hasil;
+			
+			
+		}
+
+		public function menu_rolenya()
+		{
+		
+			$_SQL2="SELECT
+						menu.id as menu_id,
+						menu.nama_menu as nama_menu,
+						parent_id as parent_id,
+						menu.icon as icon,
+						modul_action
+					FROM
+					s_bahana_menu menu";
+
+			$q_cek_menu = $this->db->query($_SQL2);
+			$res['arraymenu']   = array(); 
+			$res['arraytmp']  = array(); 
+			foreach($q_cek_menu->result() as $key => $value)
+			{
+				$res['arraytmp'][$key]['menu_id'] = $value->menu_id;
+				$res['arraytmp'][$key]['icon'] = $value->icon;
+				$res['arraytmp'][$key]['parent_id'] = $value->parent_id;
+				$res['arraytmp'][$key]['nama_menu'] = $value->nama_menu;
+				$res['arraytmp'][$key]['modul_action'] = $value->modul_action;
+			}
+			foreach($res['arraytmp'] as $val){
+			   if($val['parent_id'] != 0){
+			       $res['arraymenu'][$val['parent_id']]['childnya'][] = $val;
+			   }
+			   else{
+			       $res['arraymenu'][$val['menu_id']] = $val;
+			   }
+			}
+			return $res['arraymenu'];
+
+		}
+		
+		public function listmenu(){
+
+			$_SQL2="SELECT
+						bgp.NamaRole AS GroupNames,
+						(
+							CASE
+							WHEN(bgp.`Level` = 0)THEN
+								'-ALL-'
+							ELSE
+								GROUP_CONCAT(sm.nama_menu)
+							END
+						)AS GroupProfile
+					FROM
+						s_bahana_group_profile bgp
+					LEFT JOIN s_bahana_akses_menu bm ON bgp.IdRole = bm.group_id
+					LEFT JOIN s_bahana_menu sm ON bm.menu_id = sm.id
+					WHERE
+						1 = 1
+					GROUP BY
+						bgp.NamaRole ASC";
+
+			$listmenu = $this->db->query($_SQL2);
+			
+			return $listmenu->result();
+
+		}
+
+
+
+		public function insertGroupName($GroupName,$RoleUser){
+			
+				if($RoleUser=="admin"){$RoleUser=0;}else{$RoleUser=1;}
+				$dt['Level'] = $RoleUser;
+				$dt['NamaRole'] = $GroupName;
+				$this->db->insert('s_bahana_group_profile', $dt);
+			    $insert_id = $this->db->insert_id();
+			    return $insert_id;
+			
+
+		}
+
+		public function insertparentandself($POST,$lastId){
+			foreach ($POST['check_list'] as $item) {
+
+				//KONDISI PARENT (cek parent dulu dapet parentnya baru di kondisi)
+
+				$ResCekPrn=$this->cekparent($item);
+				if($ResCekPrn){
+					$cekapakahsudahada=$this->cekapakahsudahada($ResCekPrn,$lastId);
+					if($cekapakahsudahada==0){
+						$ResultFaktur = $this->db->query("insert into s_bahana_akses_menu values (".$lastId.",".$ResCekPrn.");");
+					}
+				}
+
+				//INPUT DIRINYA SENDIRI
+				$ResultFaktur2 = $this->db->query("insert into s_bahana_akses_menu values (".$lastId.",".$item.");");
+
+			}
+
+			//pr($_POST);exit;
+
+		}
+
+		public function cekapakahsudahada($ResCekPrn,$group){
+			$ResultFaktur = $this->db->query("select count(*) as total from s_bahana_akses_menu where group_id=".$group." AND menu_id=".$ResCekPrn."");
+			$data = $ResultFaktur->result();
+			return $data[0]->total;
+
+		}
+
+		public function CekRoleApakahSudahAda($lastId){
+			$ResultFaktur = $this->db->query("select count(*) as total from s_bahana_akses_menu where group_id=".$lastId."");
+			$data = $ResultFaktur->result();
+			return $data[0]->total;
+
+		}
+
+		public function cekparent($item){
+			$ResultFaktur = $this->db->query("select parent_id from s_bahana_menu where id=".$item."");
+			$data = $ResultFaktur->result();
+			return $data[0]->parent_id;
+
+		}
 
 		public function indexs_table_user($limit,$offset)
 		{

@@ -15,6 +15,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <nav>
                     <h5 class="sidebar-header">Navigation</h5>
                     <ul class="nav nav-pills nav-stacked">
@@ -23,174 +25,50 @@
                                 <i class="fa fa-lg fa-fw fa-home"></i> Dashboards 
                             </a>
                         </li>
-                        <li class="nav-dropdown <?php if($this->uri->segment(1)=='user'){ echo'active';}?>">
-                            <a href="#" title="Users">
-                                <i class="fa fa-lg fa-fw fa-user"></i> Users
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>user/profile" title="Profile">
-                                        <i class="fa fa-fw fa-caret-right"></i> Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>user/member" title="Members">
-                                        <i class="fa fa-fw fa-caret-right"></i> Members
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pages-group.php" title="Group Profiles">
-                                        <i class="fa fa-fw fa-caret-right"></i> Group Profiles
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-dropdown">
-                            <a href="#" title="Data">
-                                <i class="fa fa-lg fa-fw fa-database"></i> Data
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>data/client" title="Clients">
-                                        <i class="fa fa-fw fa-caret-right"></i> Clients
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>data/vendor" title="Vendor">
-                                        <i class="fa fa-fw fa-caret-right"></i> Vendors
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>data/data_car" title="Cars">
-                                        <i class="fa fa-fw fa-caret-right"></i> Cars
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>data/data_driver" title="Drivers">
-                                        <i class="fa fa-fw fa-caret-right"></i> Drivers
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-dropdown">
-                            <a href="#" title="Faktur">
-                                <i class="fa fa-lg fa-fw fa-edit"></i> Faktur
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>faktur" title="List Faktur">
-                                        <i class="fa fa-fw fa-caret-right"></i> List Faktur
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>faktur/createfaktur" title="Create Faktur">
-                                        <i class="fa fa-fw fa-caret-right"></i> Create Faktur
-                                    </a>
-                                </li>                                
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-dropdown">
-                            <a href="#" title="Surat Jalan">
-                                <i class="fa fa-lg fa-fw fa-paper-plane"></i> Surat Jalan
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>suratjalan" title="List Surat Jalan">
-                                        <i class="fa fa-fw fa-caret-right"></i> List Surat Jalan
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>suratjalan/createsuratjalan" title="Create Surat Jalan">
-                                        <i class="fa fa-fw fa-caret-right"></i> Create Surat Jalan
-                                    </a>
-                                </li>                                
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-dropdown">
-                            <a href="#" title="Invoice">
-                                <i class="fa fa-lg fa-fw fa-file-text"></i> Invoice
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>invoice" title="List Invoice">
-                                        <i class="fa fa-fw fa-caret-right"></i> List Invoice
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>invoice/createinvoice" title="Create Invoice">
-                                        <i class="fa fa-fw fa-caret-right"></i> Create Invoice
-                                    </a>
-                                </li>                                
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-dropdown">
-                            <a href="#" title="Report">
-                                <i class="fa fa-lg fa-fw fa-clipboard"></i> Report
-                            </a>
-                            <ul class="nav-sub">
-                                <li>
-                                    <a href="report-order.php" title="Report Orders">
-                                        <i class="fa fa-fw fa-caret-right"></i> Report Orders
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="report-client.php" title="Report Clients">
-                                        <i class="fa fa-fw fa-caret-right"></i> Report Clients
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="report-vendor.php" title="Report Vendors">
-                                        <i class="fa fa-fw fa-caret-right"></i> Report Vendors
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="report-car.php" title="Report Cars">
-                                        <i class="fa fa-fw fa-caret-right"></i> Report Cars
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="report-driver.php" title="Report Drivers">
-                                        <i class="fa fa-fw fa-caret-right"></i> Report Drivers
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="disabled">
-                            <a href="javascript:;" title="Disabled">
-                                <i class="fa fa-lg fa-fw fa-th"></i> Disabled
-                            </a>
-                        </li>
-                    </ul>
+                       <?php foreach ($arraymenu as $value) {  ?>
+                         <li class="nav-dropdown <?php if($this->uri->segment(1)==$value['modul_action']){ echo'active';}?>" >
+                             <a href="#" title="Users">
+                                <i class="fa fa-lg fa-fw <?php echo $value['icon'];?>"></i> <?php echo $value['nama_menu'];?>
+                             </a>
+                               <ul class="nav-sub">
+                                       <?php foreach ($value['childnya'] as $key2 => $value2) { ?>
+                                        <li>
+                                            <a href="<?php echo base_url().$value2['modul_action']; ?>" title="Profile">
+                                                <i class="fa fa-fw fa-caret-right"></i> <?php echo $value2['nama_menu'];?>
+                                            </a>
+                                        </li>
+                                        <?php }  ?>
+                                    </ul>
+                             </li>
+
+                        <?php }  ?>
+                   </ul>
+
+
                     <h5 class="sidebar-header">Faktur Taks</h5>
                     <ul class="nav nav-pills nav-stacked">
                         <li>
-                            <a href="list-faktur.php">
+                            <a href="<?php echo base_url().'faktur'; ?>">
                                 <i class="fa fa-fw fa-circle text-danger"></i>
-                                New <span class="badge badge-danger pull-right"><strong> 8 </strong></span>
+                                New <span class="badge badge-danger pull-right"><strong> <?php echo $totalfakturnew;?> </strong></span>
                             </a>
                         </li>
                         <li>
-                            <a href="list-faktur.php">
+                            <a href="<?php echo base_url().'faktur'; ?>">
                                 <i class="fa fa-fw fa-circle text-info"></i>
-                                Approve <span class="badge badge-info pull-right"><strong> 5 </strong></span>
+                                Approve <span class="badge badge-info pull-right"><strong> <?php echo $totalfakturapprove;?>  </strong></span>
                             </a>
                         </li>
                         <li>
-                            <a href="list-faktur.php">
+                            <a href="<?php echo base_url().'faktur'; ?>">
                                 <i class="fa fa-fw fa-circle text-warning"></i>
-                                Update <span class="badge badge-warning pull-right"><strong> 3 </strong></span>
+                                Update <span class="badge badge-warning pull-right"><strong> <?php echo $totalfakturupdate;?>  </strong></span>
                             </a>
                         </li>
                         <li>
-                            <a href="list-faktur.php">
+                            <a href="<?php echo base_url().'faktur'; ?>">
                                 <i class="fa fa-fw fa-circle text-success"></i>
-                                Finish <span class="badge badge-success pull-right"><strong> 12 </strong></span>
+                                Finish <span class="badge badge-success pull-right"><strong> <?php echo $totalfakturfinish;?> </strong></span>
                             </a>
                         </li>
                     </ul>
@@ -200,7 +78,7 @@
                             <div class="mini-chart mini-chart-block">
                                 <div class="chart-details">
                                     <div class="chart-name">Total Order</div>
-                                    <div class="chart-value">Rp.261,885</div>
+                                    <div class="chart-value"><?php echo $totalso;?></div>
                                 </div>
                                 <div id="mini-chart-sidebar-1" class="chart pull-right"></div>
                             </div>
@@ -209,7 +87,7 @@
                             <div class="mini-chart mini-chart-block">
                                 <div class="chart-details">
                                     <div class="chart-name">Total Clients</div>
-                                    <div class="chart-value">12,491</div>
+                                    <div class="chart-value"><?php echo $totalClient;?></div>
                                 </div>
                                 <div id="mini-chart-sidebar-2" class="chart pull-right"></div>
                             </div>
@@ -218,7 +96,7 @@
                             <div class="mini-chart mini-chart-block">
                                 <div class="chart-details">
                                     <div class="chart-name">Total Cars</div>
-                                    <div class="chart-value">1,231</div>
+                                    <div class="chart-value"><?php echo $totalCars;?></div>
                                 </div>
                                 <div id="mini-chart-sidebar-3" class="chart pull-right"></div>
                             </div>
@@ -227,7 +105,7 @@
                             <div class="mini-chart mini-chart-block">
                                 <div class="chart-details">
                                     <div class="chart-name">Total Drivers</div>
-                                    <div class="chart-value">976</div>
+                                    <div class="chart-value"><?php echo $totalDrivers;?></div>
                                 </div>
                                 <div id="mini-chart-sidebar-4" class="chart pull-right"></div>
                             </div>

@@ -18,7 +18,7 @@ $config['modules_locations'] = array(
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/bahana/ci/';
+$config['base_url']	= 'http://localhost:81/bahana/';
 
 /*
 |--------------------------------------------------------------------------

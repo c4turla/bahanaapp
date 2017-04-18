@@ -15,10 +15,9 @@ class faktur extends CI_Controller {
 			$d['dt_sj_finish'] = $this->app_load_data_model->load_sj_finish($GLOBALS['site_limit_medium'],$uri);
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_faktur($GLOBALS['site_limit_medium'],$uri);
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/faktur/listfaktur",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			
+
+			$this->load->template($GLOBALS['site_theme']."/faktur/listfaktur",$d);
 		}
 		else
 		{
@@ -59,10 +58,8 @@ class faktur extends CI_Controller {
 			
 			$d['statusview'] = $this->session->flashdata('statusview');
 
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/faktur/createfaktur",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/faktur/createfaktur",$d);
+		
 		}
 		else
 		{
@@ -117,10 +114,9 @@ class faktur extends CI_Controller {
 			$d['dateapproved']=date('Y-m-d');
 			$d['timeapproved']=date('h:i:s');
 			//pr($session);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/faktur/approvefaktur",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/faktur/approvefaktur",$d);
+		
 		}
 		else
 		{
@@ -174,10 +170,9 @@ class faktur extends CI_Controller {
 			$d['dateupdated']=date('Y-m-d');
 			$d['timeupdated']=date('h:i:s');
 			//pr($session);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/faktur/updatefaktur",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/faktur/updatefaktur",$d);
+			
 		}
 		else
 		{
@@ -230,6 +225,7 @@ function viewfaktur()
 
 			$d['dateapproved']=date('Y-m-d');
 			$d['timeapproved']=date('h:i:s');
+
 			$this->load->view($GLOBALS['site_theme']."/faktur/viewfaktur",$d);
  			
 		}
@@ -418,10 +414,9 @@ function viewfaktur()
 			
 			$d['dt_retrieve'] = $this->app_load_data_model->index_table_user();
 			//pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/member-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/user/member-profile",$d);
+	
 		}
 		else
 		{

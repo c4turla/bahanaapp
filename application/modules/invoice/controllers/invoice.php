@@ -13,13 +13,8 @@ class invoice extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['sesi']=$session['session'];
-
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_invoice($GLOBALS['site_limit_medium'],$uri);
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/invoice/listinvoice",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/invoice/listinvoice",$d);
 		}
 		else
 		{
@@ -32,11 +27,9 @@ class invoice extends CI_Controller {
 		//pr($this->session->userdata);exit;
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
-			//SESSION TO VIEW
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['sesi']=$session['session'];
-			//pr($session['session']);exit;
 			$get = $this->db->get("bahana_client")->result();
 			$getcar = $this->db->get("bahana_car")->result();
 			$getdriver = $this->db->get("bahana_driver")->result();
@@ -58,11 +51,8 @@ class invoice extends CI_Controller {
 			$d['timecreate']=date('h:i:s');
 			$d['timeupdate']=date('h:i:s');
 
+			$this->load->template($GLOBALS['site_theme']."/invoice/createinvoice",$d);
 
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/invoice/createinvoice",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
 		}
 		else
 		{
@@ -142,15 +132,11 @@ class invoice extends CI_Controller {
 			
 			$d['statusview'] = $this->session->flashdata('statusview');
 			$d['fakturlist']=$fakturlist;
-
-
 			$d['dateapproved']=date('Y-m-d');
 			$d['timeapproved']=date('h:i:s');
 			//pr($session);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/approvesj",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/approvesj",$d);
+	
 		}
 		else
 		{
@@ -233,10 +219,8 @@ class invoice extends CI_Controller {
 			$d['dateapproved']=date('Y-m-d');
 			$d['timeapproved']=date('h:i:s');
 			//pr($session);exit;
-		
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/viewsuratjalan",$d);
- 			
-		}
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/viewsuratjalan",$d);
+ 		}
 		else
 		{
 			redirect("login");
@@ -323,11 +307,6 @@ class invoice extends CI_Controller {
 	
 	function simpan()
 	{
-		//pr($_FILES);
-
-	
-
-		
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
 			

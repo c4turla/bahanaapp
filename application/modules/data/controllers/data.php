@@ -12,11 +12,7 @@ class data extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_client($GLOBALS['site_limit_medium'],$uri);
-		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-client",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-client",$d);
 		}
 		else
 		{
@@ -35,11 +31,7 @@ class data extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_client($GLOBALS['site_limit_medium'],$uri);
-		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-client",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-client",$d);
 		}
 		else
 		{
@@ -57,17 +49,10 @@ class data extends CI_Controller {
 			$session['session']=$this->session->userdata;
 			
 			$get = $this->db->get("groupclient")->result();;
-			
-			//pr($get);exit;
-			//View Profile		
+				
 			$d['data']= $get;
-			
-			
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-create-client",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-create-client",$d);
+		
 		}
 		else
 		{
@@ -111,11 +96,9 @@ class data extends CI_Controller {
 			$d['id'] = $get->id;
 			
 
-		    //pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-edit-client",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+		  
+ 			$this->load->template($GLOBALS['site_theme']."/data/data-edit-client",$d);
+
 		}
 		else
 		{
@@ -270,11 +253,8 @@ class data extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_vendor($GLOBALS['site_limit_medium'],$uri);
-		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-vendor",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+ 			$this->load->template($GLOBALS['site_theme']."/data/data-vendor",$d);
 		}
 		else
 		{
@@ -298,11 +278,8 @@ class data extends CI_Controller {
 			$d['data']= $get;
 			
 			
+ 			$this->load->template($GLOBALS['site_theme']."/data/data-create-vendor",$d);
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-create-vendor",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
 		}
 		else
 		{
@@ -395,11 +372,8 @@ class data extends CI_Controller {
 			$d['id'] = $get->id;
 			
 
-		    //pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-edit-vendor",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+		    $this->load->template($GLOBALS['site_theme']."/data/data-edit-vendor",$d);
+			
 		}
 		else
 		{
@@ -485,11 +459,8 @@ class data extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_car($GLOBALS['site_limit_medium'],$uri);
+			$this->load->template($GLOBALS['site_theme']."/data/data-car",$d);
 		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-car",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
 		}
 		else
 		{
@@ -508,17 +479,9 @@ class data extends CI_Controller {
 			$session['session']=$this->session->userdata;
 			
 			$get = $this->db->query("SELECT id,nameVendor FROM bahana_vendor")->result();;
-			
-			//pr($get);exit;
-			//View Profile		
 			$d['data']= $get;
-			
-			
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-create-car",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-create-car",$d);
+		
 		}
 		else
 		{
@@ -603,12 +566,9 @@ class data extends CI_Controller {
 			$d['Notes'] = $get->Notes;
 			$d['id_car'] = $get->id_car;
 			
-
-		    //pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-edit-car",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-edit-car",$d);
+		   
+			
 		}
 		else
 		{
@@ -692,10 +652,9 @@ class data extends CI_Controller {
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_driver($GLOBALS['site_limit_medium'],$uri);
 		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-driver",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+		$this->load->template($GLOBALS['site_theme']."/data/data-driver",$d);
+		
 		}
 		else
 		{
@@ -719,11 +678,8 @@ class data extends CI_Controller {
 			$d['data']= $get;
 			
 			
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-create-driver",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/data/data-create-driver",$d);
+		
 		}
 		else
 		{
@@ -814,10 +770,8 @@ class data extends CI_Controller {
 			
 
 		    //pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-edit-driver",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+		    $this->load->template($GLOBALS['site_theme']."/data/data-edit-driver",$d);
+		
 		}
 		else
 		{
@@ -899,11 +853,9 @@ class data extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_client($GLOBALS['site_limit_medium'],$uri);
+		 	$this->load->template($GLOBALS['site_theme']."/data/data-client",$d);
 		
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/data/data-client",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			
 		}
 		else
 		{
@@ -949,10 +901,8 @@ class data extends CI_Controller {
 			$getProfile = $this->db->get_where("group_profile",$idgroup)->row();
 			$d['Role'] = $getProfile->NamaRole;
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/pages-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/user/pages-profile",$d);
+		
 		}
 		else
 		{

@@ -78,7 +78,11 @@ $(".ok-btn-add-fa").click(function () {
 
 });
 
+$(".ok-btn-add-group").click(function () {
+	console.log('ss');
+	$( ".FormGroupProfile" ).trigger( "submit" );
 
+});
 
 //Change No Faktur SJ 
 $(document).on('change','.NofakturSj',function(){	
@@ -96,6 +100,21 @@ $(document).on('change','.NofakturSj',function(){
 					
 			}
 	  });
+	
+});
+
+//Change No Faktur SJ 
+$(document).on('click','.roleuser',function(){	
+
+	console.log($(this).val());
+	
+	if($(this).val()=="user"){
+		$(".groupdetail").show();
+	}
+
+	else if($(this).val()=="admin"){
+		$(".groupdetail").hide();
+	}
 	
 });
 
@@ -125,3 +144,17 @@ $(document).on('change','.timeakhir',function(){
 			$('.timetotal').val(hours+':'+minutes);
 
 	  });
+
+
+$('.checkallrole').on('click', function () {
+  
+        $('input:checkbox').prop('checked', true);
+        $(this).html('Select All');
+    
+});
+$('.deselectall').on('click', function () {
+    
+        $('input:checkbox').prop('checked', false);
+        $(this).html('Deselect All');
+    
+});

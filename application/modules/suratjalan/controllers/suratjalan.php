@@ -13,14 +13,9 @@ class suratjalan extends CI_Controller {
 			$session['session']=array();
 			$session['session']=$this->session->userdata;
 			$d['sesi']=$session['session'];
-
 			$d['dt_retrieve'] = $this->app_load_data_model->load_data_suratjalan($GLOBALS['site_limit_medium'],$uri);
 			$d['dt_fa_approved'] = $this->app_load_data_model->load_faktur_approved($GLOBALS['site_limit_medium'],$uri);
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/listsuratjalan",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/listsuratjalan",$d);
 		}
 		else
 		{
@@ -59,11 +54,8 @@ class suratjalan extends CI_Controller {
 			$d['timecreate']=date('h:i:s');
 			$d['timeupdate']=date('h:i:s');
 
-
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/createsuratjalan",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/createsuratjalan",$d);
+			
 		}
 		else
 		{
@@ -149,10 +141,9 @@ class suratjalan extends CI_Controller {
 			$d['dateapproved']=date('Y-m-d');
 			$d['timeapproved']=date('h:i:s');
 			//pr($session);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/approvesj",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/approvesj",$d);
+		
 		}
 		else
 		{
@@ -237,10 +228,9 @@ class suratjalan extends CI_Controller {
 			$d['dateupdated']=date('Y-m-d');
 			$d['timeupdated']=date('h:i:s');
 			//pr($session);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/suratjalan/updatesj",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/suratjalan/updatesj",$d);
+		
 		}
 		else
 		{

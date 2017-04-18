@@ -11,11 +11,6 @@ class user extends CI_Controller {
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
 			
-			//session TO view
-			$session['session']=array();
-			$session['session']=$this->session->userdata;
-			
-			//pr($this->session->userdata['Id']);exit;
 			$id['id'] = $this->session->userdata['id'];
 			$get = $this->db->get_where("user",$id)->row();
 			
@@ -36,10 +31,8 @@ class user extends CI_Controller {
 			$d['FilesName'] = $get->FilesName;
 			$d['id'] = $get->id;
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/pages-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/user/pages-profile",$d);
+			
 		}
 		else
 		{
@@ -51,57 +44,9 @@ class user extends CI_Controller {
 		//pr($this->session->userdata);exit;
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
-			//session TO view
-			$session['session']=array();
-			$session['session']=$this->session->userdata;
 			
-			//pr($this->session->userdata['Id']);exit;
 			$id['id'] = $this->session->userdata['id'];
-			$get = $this->db->get_where("user",$id)->row();
-			
-			//View Profile		
-			$d['NamaLengkap'] = $get->NamaLengkap;
-			$d['Position'] = $get->Position;
-			$d['Email'] = $get->Email;
-			$d['Phone'] = $get->Phone;
-			$d['City'] = $get->City;
-			$d['Province'] = $get->Province;
-			$d['Country'] = $get->Country;
-			$d['BBMAccount'] = $get->BBMAccount;
-			$d['YMAccount'] = $get->YMAccount;
-			$d['Address'] = $get->Address;
-			$d['Username'] = $get->Username;
-			$d['Password'] = $get->Password;
-			$d['FilesName'] = $get->FilesName;
-			$d['id'] = $get->id;
-			
-			//Get Group Id
-			$idgroup['IdRole'] = $get->Role;;
-			$getProfile = $this->db->get_where("group_profile",$idgroup)->row();
-			$d['Role'] = $getProfile->NamaRole;
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/pages-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
-		}
-		else
-		{
-			redirect("login");
-		}
-	}
-	
-	function viewprofile($id_param)
-	{
-		//pr($id_param);exit;
-		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
-		{
-			//session TO view
-			$session['session']=array();
-			$session['session']=$this->session->userdata;
-			
-			//pr($this->session->userdata['Id']);exit;
-			$id['id'] = $id_param;
+		
 			$get = $this->db->get_where("user",$id)->row();
 			
 			//View Profile		
@@ -122,13 +67,99 @@ class user extends CI_Controller {
 			
 			//Get Group Id
 			$idgroup['IdRole'] = $get->Role;
-			$getProfile = $this->db->get_where("group_profile",$idgroup)->row();
+			$getProfile = $this->db->get_where("s_bahana_group_profile",$idgroup)->row();
 			$d['Role'] = $getProfile->NamaRole;
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/pages-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/user/pages-profile",$d);
+		
+		}
+		else
+		{
+			redirect("login");
+		}
+	}
+	
+
+	function GroupProfile()
+	{
+		//pr($this->session->userdata);exit;
+		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
+		{
+			
+			$menuall['menu']=$this->app_load_data_model->menu_rolenya();
+			$menuall['listmenu']=$this->app_load_data_model->listmenu();
+
+
+			$this->load->template($GLOBALS['site_theme']."/user/groupprofile",$menuall);
+ 		}
+		else
+		{
+			redirect("login");
+		}
+	}
+
+	function AddGroupProfile(){
+
+		$dt['check_list'] = $this->security->xss_clean($_POST['check_list']);
+		$dt['roleuser'] = $this->security->xss_clean($_POST['roleuser']);
+		$dt['GroupName'] = $this->security->xss_clean($_POST['GroupName']);
+		$lastId=$this->app_load_data_model->insertGroupName($dt['GroupName'],$dt['roleuser']);
+
+		if($dt['roleuser'] != "" && $dt['GroupName'] !="" ){
+				if($dt['roleuser']=="user"){
+					//Function User Over Here !!
+					if($dt['check_list'] != ""){
+						$result=$this->app_load_data_model->insertparentandself($_POST,$lastId);
+					}
+
+				}else{
+					//Function Admin Over Here !!
+					$result=$this->app_load_data_model->CekRoleApakahSudahAda($lastId);
+					//pr($result);exit;
+					if($result==0){ 
+						$this->db->query("Call AksesAdmin(".$lastId.")");
+					}
+				}
+		}else{
+			
+		}
+		redirect("user/GroupProfile");
+
+
+	}
+
+	function viewprofile($id_param)
+	{
+		//pr($id_param);exit;
+		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
+		{
+			
+			$id['id'] = $id_param;
+			$get = $this->db->get_where("user",$id)->row();
+			//pr($get);exit;
+			//View Profile		
+			$d['NamaLengkap'] = $get->NamaLengkap;
+			$d['Position'] = $get->Position;
+			$d['Email'] = $get->Email;
+			$d['Phone'] = $get->Phone;
+			$d['City'] = $get->City;
+			$d['Province'] = $get->Province;
+			$d['Country'] = $get->Country;
+			$d['BBMAccount'] = $get->BBMAccount;
+			$d['YMAccount'] = $get->YMAccount;
+			$d['Address'] = $get->Address;
+			$d['Username'] = $get->Username;
+			$d['Password'] = $get->Password;
+			$d['FilesName'] = $get->FilesName;
+			$d['id'] = $get->id;
+			
+			//Get Group Id
+			$idgroup['IdRole'] = $get->Role;
+			$getProfile = $this->db->get_where("s_bahana_group_profile",$idgroup)->row();
+			//pr($getProfile);exit;
+			$d['Role'] = $getProfile->NamaRole;
+			
+			$this->load->template($GLOBALS['site_theme']."/user/pages-profile",$d);
 		}
 		else
 		{
@@ -142,20 +173,7 @@ class user extends CI_Controller {
 		//pr($this->session->userdata);exit;
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
-			//session TO view
-			$session['session']=array();
-			$session['session']=$this->session->userdata;
-			
-			//pr($this->session->userdata['Id']);exit;
-			$id['id'] = $this->session->userdata['id'];
-			$get = $this->db->get_where("user",$id)->row();
-		
-	
-			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/Add-profile");
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/user/Add-profile");
 		}
 		else
 		{
@@ -176,8 +194,6 @@ class user extends CI_Controller {
 			//pr($this->session->userdata['Id']);exit;
 			$id['id'] = $this->session->userdata['id'];
 			$get = $this->db->get_where("user",$id)->row();
-		
-	
 			//View Profile		
 			$d['NamaLengkap'] = $get->NamaLengkap;
 			$d['Position'] = $get->Position;
@@ -193,13 +209,11 @@ class user extends CI_Controller {
 			$d['Username'] = $get->Username;
 			$d['Password'] = $get->Password;
 			$d['id'] = $get->id;
-			
 			$d['Password'] = $get->Password;
 			$d['FilesName'] = $get->FilesName;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/edit-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+
+			$this->load->template($GLOBALS['site_theme']."/user/edit-profile",$d);
+		
 		}
 		else
 		{
@@ -324,15 +338,10 @@ class user extends CI_Controller {
 		
 		if($this->session->userdata("logged_in")=="yesGetMeLoginBaby")
 		{
-		    $session['session']=array();
-			$session['session']=$this->session->userdata;
-			
+		 
 			$d['dt_retrieve'] = $this->app_load_data_model->index_table_user();
-			//pr($d);exit;
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/user/member-profile",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
+			$this->load->template($GLOBALS['site_theme']."/user/member-profile",$d);
+		
 		}
 		else
 		{

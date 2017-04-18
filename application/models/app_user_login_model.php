@@ -6,14 +6,28 @@ class app_user_login_model extends CI_Model {
 	{
 	
 		$d['username'] 	= mysql_real_escape_string($data['username']);
-		
-		
 		$d['Password'] = md5(mysql_real_escape_string($data['password']));
-		//pr($d);exit;
+	
 		//pr($d['Password']);exit;
-		$_SQL="SELECT * FROM `user` us LEFT JOIN `group_profile` gp on us.Role=gp.IdRole WHERE us.username='".$d['username']."' AND us.password='".$d['Password']."'";
+		$_SQL="SELECT * FROM `user` us LEFT JOIN `s_bahana_group_profile` gp on us.Role=gp.IdRole WHERE us.username='".$d['username']."' AND us.password='".$d['Password']."'";
 		//pr($_SQL);exit;
 		$q_cek_login = $this->db->query($_SQL);
+
+		//Menu Session
+		$_SQL2="SELECT
+				menu.id,
+				menu.nama_menu,
+				menu.parent_id,
+				menu.icon,
+				modul_action
+				FROM
+				`user` us
+				LEFT JOIN `s_bahana_group_profile` gp ON us.Role = gp.IdRole
+				RIGHT JOIN s_bahana_akses_menu akses ON akses.group_id = gp.IdRole
+				LEFT JOIN s_bahana_menu menu ON akses.menu_id = menu.id
+				WHERE us.username='".$d['username']."' AND us.password='".$d['Password']."' AND menu.status_aktif=1";
+		//pr($_SQL2);exit;
+		$q_cek_menu = $this->db->query($_SQL2);
 		
 		if(count($q_cek_login->result())>0)
 		{
@@ -39,33 +53,23 @@ class app_user_login_model extends CI_Model {
 				$sess_data['IdRole'] = $qad->IdRole;
 				$sess_data['NamaRole'] = $qad->NamaRole;
 				$sess_data['UserProfile'] = $qad->UserProfile;
-				$sess_data['Members'] = $qad->Members;
-				$sess_data['GroupProfile'] = $qad->GroupProfile;
-				$sess_data['CompanyInformation'] = $qad->CompanyInformation;
-				$sess_data['PaymentAccount'] = $qad->PaymentAccount;
-				$sess_data['SecurityPassword'] = $qad->SecurityPassword;
-				$sess_data['DataClient'] = $qad->DataClient;
-				$sess_data['DataVendor'] = $qad->DataVendor;
-				$sess_data['DataCars'] = $qad->DataCars;
-				$sess_data['DataDriver'] = $qad->DataDriver;
-				$sess_data['ListFaktur'] = $qad->ListFaktur;
-				$sess_data['CreateFaktur'] = $qad->CreateFaktur;
-				$sess_data['ManagerAppFaktur'] = $qad->ManagerAppFaktur;
-				$sess_data['ListSuratJalan'] = $qad->ListSuratJalan;
-				$sess_data['CreateSuratJalan'] = $qad->CreateSuratJalan;
-				$sess_data['ManagerAppSuratUangJalan'] = $qad->ManagerAppSuratUangJalan;
-				$sess_data['ListInvoice'] = $qad->ListInvoice;
-				$sess_data['CreateInvoice'] = $qad->CreateInvoice;
-				$sess_data['ManagerAppInvoice'] = $qad->ManagerAppInvoice;
-				$sess_data['ReportOrders'] = $qad->ReportOrders;
-				$sess_data['ReportClients'] = $qad->ReportClients;
-				$sess_data['ReportVendors'] = $qad->ReportVendors;
-				$sess_data['ReportCars'] = $qad->ReportCars;
-				$sess_data['ReportDrivers'] = $qad->ReportDrivers;
-				$sess_data['ManagerAppInvoice'] = $qad->ManagerAppInvoice;
-		
-				$this->session->set_userdata($sess_data);
 			}
+
+			//pr('masuk');exit;
+			foreach($q_cek_menu->result() as $key => $value)
+			{
+				$sess_data['menu'][$key]['menu_id'] = $value->id;
+				$sess_data['menu'][$key]['icon'] = $value->icon;
+				$sess_data['menu'][$key]['parent_id'] = $value->parent_id;
+				$sess_data['menu'][$key]['nama_menu'] = $value->nama_menu;
+				$sess_data['menu'][$key]['modul_action'] = $value->modul_action;
+				
+			}
+
+			//pr($sess_data);exit;
+			$this->session->set_userdata($sess_data);
+			
+
 			redirect("dashboard");
 		}
 		else

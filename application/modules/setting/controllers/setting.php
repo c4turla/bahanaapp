@@ -48,11 +48,8 @@ class setting extends CI_Controller {
 			
 			
 			//pr($d);exit;
+			$this->load->template($GLOBALS['site_theme']."/sistem/setting",$d);
 			
-			$this->load->view($GLOBALS['site_theme']."/bg_header",$session);
- 			$this->load->view($GLOBALS['site_theme']."/bg_left");
- 			$this->load->view($GLOBALS['site_theme']."/sistem/setting",$d);
- 			$this->load->view($GLOBALS['site_theme']."/bg_footer");
 		}
 		else
 		{
