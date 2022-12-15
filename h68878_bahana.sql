@@ -78,11 +78,6 @@ CREATE TABLE `bahana_client` (
 -- Dumping data for table `bahana_client`
 --
 
-INSERT INTO `bahana_client` (`id`, `GroupClient`, `nameClient`, `nameCP`, `phone`, `fax`, `mobile`, `email`, `Address`, `uploadKTP`, `Country`, `city`, `provinsi`, `NoKTP`) VALUES
-(1, '2', 'Imam Maulana', '082910101', '939383', '', '08212939393', 'imam.maulana2011@gmail.com', 'jalan Jaksa ', 'gramblr.exe', 'Jakarta', 'Jakarta', 'Jakarta', '2323'),
-(3, '1', 'PT. Bahana Motor', 'Mr. Raka', '939383', '', '08212939393', 'imam.maulana2011@gmail.com', 'Jl. Sudirman Raya No.99 Jakarta Selatan DKI Jakarta Indonesia', 'mie-bakso-sapi-indonesian-food-picture-wallpapers-gallery.jpg', 'Jakarta', 'Jakarta', 'Jakarta', '2323'),
-(7, '3', 'Caturla Corp', 'Catur Riyono', '085340517686', '', '', 'c4turla@yahoo.co.id', 'Kendari', 'foldable-travel-bag2.jpg', 'Sulawesi Tenggara', 'Kendari', 'Sulawesi Tenggara', '323213213'),
-(8, '2', 'Sanjaya Grup', 'Agus Sudarajat', '85340517686', '', '', 'catur.crh@gmail.com', 'Jakarta', 'Aris.jpeg', 'Indonesia', 'Jakarta', 'DKI', '23231321');
 
 -- --------------------------------------------------------
 
@@ -110,8 +105,6 @@ CREATE TABLE `bahana_driver` (
 -- Dumping data for table `bahana_driver`
 --
 
-INSERT INTO `bahana_driver` (`id`, `DriverName`, `Mobile1`, `Mobile2`, `PINBB`, `Email`, `Status`, `Address`, `City`, `Province`, `Country`, `FotoSIM`, `NoSIM`) VALUES
-(1, 'ABDUL', '8654654654', '8565345345', '7ABC123', 'catur@pnm.co.id', '1', 'Jl. Ciputat Raya No.101 Jakarta Selatan DKI Jakart', 'Jakarta', 'Jakarta', 'Indonesia', 'Aris.jpeg', 'ok23232323');
 
 -- --------------------------------------------------------
 
@@ -409,8 +402,6 @@ CREATE TABLE `company_information` (
 -- Dumping data for table `company_information`
 --
 
-INSERT INTO `company_information` (`id`, `CompanyName`, `CompanyAddress`, `CompanyPhone`, `CompanyPhone2`, `CompanyFax`, `CompanyEmail`, `CompanyEmail2`, `CompanyWebsite`, `BankName`, `AccountNumber`, `AccountName`, `BankName2`, `AccountNumber2`, `AccountName2`, `BankName3`, `AccountNumber3`, `AccountName3`, `NPWP`, `NPWPName`, `SecurityPassword`) VALUES
-(1, 'PNM', 'Bagian IT , PT Permodalan Nasional Madani (Persero)\r\nGedung Arthaloka Lantai 1 Jl.Jendral Sudirman Kav.2 Jakarta 10220, Indonesia', '0218501992', '0218561629', '021832794981', 'imam.maulana2011@gmail.com', 'oceboysip@gmail.com', 'http://bahana.co.id', 'BNI', '90282-293993', 'Imam Maulana', 'MANDIRI', '1093938-22', 'Imam Maulana', 'BCA', '9292928-11', 'Imam Maulana', '9188199292', 'PT BAHANA', 'obAIPwwi3AZBEJyHaofXyK+0ggEFE/pfqXAvbKflUwKm+srFEf7CalQer+0p3FjL622pHGMFGBk2ZCRn3d7tpg==');
 
 -- --------------------------------------------------------
 
@@ -529,9 +520,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `NamaLengkap`, `Position`, `Role`, `Email`, `Username`, `Password`, `Address`, `City`, `Province`, `Country`, `Phone`, `BBMAccount`, `YMAccount`, `FilesName`) VALUES
 (1, 'Administrator', 'Admin', 1, 'admin@bahana.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Jl. Lingkar Mega Kuningan Kav. E No.1 Lantai 28, Kuningan Timur\r\nJakarta Selatan, Kode Pos 12950\r\nDKI Jakarta, Indonesia', 'Jakarta', 'Jakarta', 'Indonesia', '082110037061', '21212131', 'oceboysip@yahoo.com', '14.jpg'),
-(2, 'imam', 'Reservation', 2, 'imam.maulana2011@gmail.com', 'reserv', '21232f297a57a5a743894a0e4a801fc3', 'Bagian IT , PT Permodalan Nasional Madani (Persero)\r\nGedung Arthaloka Lantai 1 Jl.Jendral Sudirman Kav.2 Jakarta 10220, Indonesia', 'Jakarta Pusat', 'DKI Jakarta', 'Jakarta', '082110037041', 'sad2323', 'oceboysip@yahoo.com', '6.jpg'),
-(3, 'bagus X', 'manager', 5, 'babar@pnm.co.id', 'manager', '21232f297a57a5a743894a0e4a801fc3', 'Bagian IT , PT Permodalan Nasional Madani (Persero)\r\nGedung Arthaloka Lantai 1 Jl.Jendral Sudirman Kav.2 Jakarta 10220, Indonesia', 'Jakarta Pusat', 'DKI Jakarta', 'Jakarta', '094748833', '933IS33', 'babar@ymail.com', '3.jpg'),
-(4, 'Catur Riyono', 'Admin', 1, 'catur@pnm.co.id', 'c4turla', '21232f297a57a5a743894a0e4a801fc3', 'Jl Martandu No. 8-9 Kel. Anduonohu Kec. Poasia Kota Kendari', 'Kendari', 'Sulawesi Tenggara', 'Indonesia', '085340517686', 'AB2213SA', 'c4turla@yahoo.co.id', 'crh.JPG');
 
 -- --------------------------------------------------------
 
