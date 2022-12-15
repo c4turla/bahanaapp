@@ -248,8 +248,6 @@ CREATE TABLE `bahana_sessions` (
 -- Dumping data for table `bahana_sessions`
 --
 
-INSERT INTO `bahana_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('ea177ea0724b4d194dcd3a4b0d8baeaa', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0', 1490891079, 'a:43:{s:9:"user_data";s:0:"";s:9:"logged_in";s:17:"yesGetMeLoginBaby";s:2:"id";s:1:"3";s:11:"NamaLengkap";s:7:"bagus X";s:8:"Position";s:7:"manager";s:4:"Role";s:1:"5";s:9:"FilesName";s:5:"3.jpg";s:5:"Email";s:15:"babar@pnm.co.id";s:8:"Username";s:7:"manager";s:8:"Password";s:32:"21232f297a57a5a743894a0e4a801fc3";s:7:"Address";s:129:"Bagian IT , PT Permodalan Nasional Madani (Persero)\r\nGedung Arthaloka Lantai 1 Jl.Jendral Sudirman Kav.2 Jakarta 10220, Indonesia";s:4:"City";s:13:"Jakarta Pusat";s:8:"Province";s:11:"DKI Jakarta";s:7:"Country";s:7:"Jakarta";s:5:"Phone";s:9:"094748833";s:10:"BBMAccount";s:7:"933IS33";s:9:"YMAccount";s:15:"babar@ymail.com";s:6:"IdRole";s:1:"5";s:8:"NamaRole";s:7:"Finance";s:11:"UserProfile";N;s:7:"Members";N;s:12:"GroupProfile";N;s:18:"CompanyInformation";N;s:14:"PaymentAccount";N;s:16:"SecurityPassword";N;s:10:"DataClient";N;s:10:"DataVendor";N;s:8:"DataCars";N;s:10:"DataDriver";N;s:10:"ListFaktur";N;s:12:"CreateFaktur";N;s:16:"ManagerAppFaktur";N;s:14:"ListSuratJalan";N;s:16:"CreateSuratJalan";N;s:24:"ManagerAppSuratUangJalan";N;s:11:"ListInvoice";N;s:13:"CreateInvoice";N;s:17:"ManagerAppInvoice";N;s:12:"ReportOrders";N;s:13:"ReportClients";N;s:13:"ReportVendors";N;s:10:"ReportCars";N;s:13:"ReportDrivers";N;}');
 
 -- --------------------------------------------------------
 
@@ -363,10 +361,6 @@ CREATE TABLE `bahana_vendor` (
 -- Dumping data for table `bahana_vendor`
 --
 
-INSERT INTO `bahana_vendor` (`id`, `nameCP`, `nameVendor`, `phone`, `fax`, `mobile`, `email`, `Address`, `uploadKTP`, `Country`, `city`, `provinsi`, `NoKTP`) VALUES
-(5, 'Mr. Ricky', 'PT. ABC Motor', '+62-21-740777888', '122', '+62-820-999888', NULL, 'Jl. Ciputat Raya No.101 ', '1.jpg', 'Banten ', 'Tangerang Selatan', 'Banten ', '2332'),
-(6, 'Saputra', 'PT. Adi Jaya', '323123232', '343423423', '23432423', '', 'Jl. Manggis No 10', '1.jpg', 'Sulawesi Tenggara', 'Kendari', 'Sulawesi Tenggara', '32442342'),
-(7, 'Catur', 'PT. Catur Tunggal', '85340517686', '43423553', '324324325', 'catur@pnm.co.id', 'Jl. Martandu No 8-9', NULL, 'Sulawesi Tenggara', 'Kendari', 'Sulawesi Tenggara', '7471040709870002');
 
 -- --------------------------------------------------------
 
